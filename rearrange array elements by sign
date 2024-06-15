@@ -1,0 +1,49 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+void RearrangebySign(vector<int> &A, int n) {
+    vector<int> pos;
+    vector<int> neg;
+  
+    // Segregate the array into positives and negatives.
+    for (int i = 0; i < n; i++) {
+        if (A[i] > 0)
+            pos.push_back(A[i]);
+        else
+            neg.push_back(A[i]);
+    }
+  
+    // Iterate over the original array and place positive
+    // elements at even indices and negative elements at odd indices.
+    int p = 0, q = 0;
+    for (int i = 0; i < n; i++) {
+        if (i % 2 == 0 && p < pos.size()) {
+            A[i] = pos[p++];
+        } else if (q < neg.size()) {
+            A[i] = neg[q++];
+        } else if (p < pos.size()) {
+            A[i] = pos[p++];
+        }
+    }
+}
+
+int main() {
+    // Array Initialization.
+    int n;
+    cin >> n;
+  
+    vector<int> A(n);
+    for (int i = 0; i < n; i++) {
+        cin >> A[i];
+    }
+
+    RearrangebySign(A, n);
+  
+    // Print the modified array.
+    for (int i = 0; i < n; i++) {
+        cout << A[i] << " ";
+    }
+
+    return 0;
+}
+
