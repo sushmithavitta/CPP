@@ -1,0 +1,39 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+vector<vector<int>> triplets(int arr[], int n) {
+    set<vector<int>> st;
+    for (int i = 0; i < n; i++) {
+        for (int j = i + 1; j < n; j++) {
+            for (int k = j + 1; k < n; k++) {
+                if (arr[i] + arr[j] + arr[k] == 0) {
+                    vector<int> triplet = {arr[i], arr[j], arr[k]};
+                    sort(triplet.begin(), triplet.end());
+                    st.insert(triplet);
+                }
+            }
+        }
+    }
+    vector<vector<int>> temp(st.begin(), st.end());
+    return temp;
+}
+
+int main() {
+    int n;
+    cin >> n;
+    int arr[n];
+    for (int i = 0; i < n; i++) {
+        cin >> arr[i];
+    }
+    vector<vector<int>> res = triplets(arr, n);
+    for ( auto triplet : res) {
+        cout << "[";
+        for (int val : triplet) {
+            cout << val << " ";
+        }
+        cout << "] ";
+    }
+    cout << endl;
+    return 0;
+}
+
