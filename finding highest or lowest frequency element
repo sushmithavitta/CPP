@@ -1,0 +1,36 @@
+#include<bits/stdc++.h>
+using namespace std;
+void frequency(int arr[],int n){
+    unordered_map<int,int> mp;
+    for(int i=0;i<n;i++){
+        mp[arr[i]]++;
+    }
+    int maxfreq=0;
+    int minfreq=n;
+    int maxele=0;
+    int minele=0;
+    for(auto x: mp){
+        int element=x.first;
+        int count=x.second;
+        if(count>maxfreq){
+            maxele=element;
+            maxfreq=count;
+    
+    }
+    if(count<minfreq){
+        minfreq=count;
+        minele=element;
+    }
+}
+cout<<maxele<<" "<<minele;
+}
+int main(){
+    int n;
+    cin>>n;
+    int arr[n];
+    for(int i=0;i<n;i++){
+        cin>>arr[i];
+    }
+    frequency(arr,n);
+    return 0;
+}
