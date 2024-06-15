@@ -1,0 +1,45 @@
+#include<bits/stdc++.h>
+using namespace std;
+vector<vector<int>> mergesubarray(vector<vector<int>> arr,int n){
+      sort(arr.begin(),arr.end());
+    vector<vector<int>> ans;
+    for(int i=0;i<n;i++){
+        if(ans.empty() || arr[i][0]>ans.back()[1]){
+            ans.push_back(arr[i]);
+        }
+        else{
+            ans.back()[1]=max(ans.back()[1],arr[i][1]);
+        }
+    }
+    return ans;
+}
+int main(){
+    int n;
+    cin>>n;
+    vector<vector<int>> arr;
+    for(int i=0;i<n;i++){
+        int m;
+        cin>>m;
+        vector<int> temp;
+        for(int j=0;j<m;j++){
+            int element;
+            cin>>element;
+            temp.push_back(element);
+        }
+        arr.push_back(temp);
+    }
+    vector<vector<int>> ans= mergesubarray(arr,n);
+    /*for(auto vec : merged){
+        for(int val : vec){
+            cout<<val<<" ";
+        }
+        cout<<endl;
+    } */
+    
+    for (auto it : ans) {
+        cout << "[" << it[0] << ", " << it[1] << "] ";
+    }
+    cout << endl;
+    
+   return 0;
+}
